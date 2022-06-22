@@ -18,4 +18,13 @@ jobs:
         shell: pwsh
         run: |
           Set-Location -Path "src"
+
+          $moduleVersion = (Test-ModuleManifest Test-ModuleManifest -Path "./HoNTools.psd1").Version
+          $null = New-Item -ItemType "Directory" -Path "HoNTools/$moduleVersion"
+
+          $null = Move-Item -Path "HoNTools.psd1" -Destination "HoNTools/$moduleVersion"
+          $null = Move-Item -Path "HoNTools.psm1" -Destination "HoNTools/$moduleVersion"
+
+          Get-ChildItem -Recurse
+
           Publish-Module -Name "HoNTools" -Repository "PSGallery" -NuGetApiKey "${{ secrets.PS_GALLERY_API_KEY }}"
