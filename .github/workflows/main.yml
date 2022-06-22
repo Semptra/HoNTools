@@ -22,11 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - shell: pwsh
-        with:
-          PS_GALLERY_API_KEY: ${{ secrets.PS_GALLERY_API_KEY }}
+      - name: Publish HoNTools PowerShell module to PSGallery
+        uses: actions/checkout@main
+        shell: pwsh
         run:
-          Write-Host "API Key is $PS_GALLERY_API_KEY"
+          Write-Host "API Key is ${{ secrets.PS_GALLERY_API_KEY }}"
