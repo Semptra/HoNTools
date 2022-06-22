@@ -19,8 +19,20 @@ jobs:
         run: |
           $currentDirectory = Get-Location
           $srcPath = Join-Path $currentDirectory "src" -Resolve
-          $manifestPath = Join-Path $srcPath "HoNTools.psd1" -Resolve
-          
-          Import-Module $manifestPath
 
-          Publish-Module -Name "HoNTools" -Repository "PSGallery" -NuGetApiKey "${{ secrets.PS_GALLERY_API_KEY }}"
+          $psd1Path = Join-Path $srcPath "HoNTools.psd1" -Resolve
+          $psm1Path = Join-Path $srcPath "HoNTools.psm1" -Resolve
+
+          $moduleVersion = (Test-ModuleManifest -Path $psd1Path).Version
+
+          $modulePath = Join-Path $srcPath "HoNTools"
+          $versionPath = Join-Path $modulePath $moduleVersion
+
+          $null = New-Item -ItemType "Directory" -Path $versionPath
+
+          $null = Move-Item -Path $psd1Path -Destination $versionPath
+          $null = Move-Item -Path $psm1Path -Destination $versionPath
+
+          Get-ChildItem -Recurse | ForEach-Object { $_.FullName }
+
+          Publish-Module -Path $modulePath -Repository "PSGallery" -NuGetApiKey "${{ secrets.PS_GALLERY_API_KEY }}"
