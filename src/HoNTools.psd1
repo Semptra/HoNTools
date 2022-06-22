@@ -24,13 +24,13 @@ GUID = 'a9a32058-1191-40e2-b48f-08f65916899f'
 Author = 'Semptra'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'HoNTools'
 
 # Copyright statement for this module
 Copyright = '(c) Semptra. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Various PowerShell tools created for HoN private servers.'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''

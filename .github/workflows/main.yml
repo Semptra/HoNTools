@@ -17,4 +17,5 @@ jobs:
       - name: Publish HoNTools PowerShell module to PSGallery
         shell: pwsh
         run:
+          Set-Location -Path "src"
           Publish-Module -Name "HoNTools" -Repository "PSGallery" -NuGetApiKey "${{ secrets.PS_GALLERY_API_KEY }}"
