@@ -17,4 +17,4 @@ jobs:
       - name: Publish HoNTools PowerShell module to PSGallery
         shell: pwsh
         run:
-          Write-Host "API Key is ${{ secrets.PS_GALLERY_API_KEY }}"
+          Get-ChildItem
