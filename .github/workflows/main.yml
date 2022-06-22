@@ -19,7 +19,7 @@ jobs:
         run: |
           Set-Location -Path "src"
 
-          $moduleVersion = (Test-ModuleManifest Test-ModuleManifest -Path "./HoNTools.psd1").Version
+          $moduleVersion = (Test-ModuleManifest -Path "./HoNTools.psd1").Version
           $null = New-Item -ItemType "Directory" -Path "HoNTools/$moduleVersion"
 
           $null = Move-Item -Path "HoNTools.psd1" -Destination "HoNTools/$moduleVersion"
